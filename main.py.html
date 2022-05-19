@@ -1,0 +1,310 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">turtle</span>
+
+<span class="s1">wn = turtle.Screen()</span>
+<span class="s1">wn.title(</span><span class="s2">'Platformer by Jacky'</span><span class="s1">)</span>
+<span class="s1">wn.bgcolor(</span><span class="s2">'light green'</span><span class="s1">)</span>
+<span class="s1">wn.tracer(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">wn.screensize(</span><span class="s3">800</span><span class="s0">, </span><span class="s3">800</span><span class="s1">)</span>
+
+<span class="s4"># player in game</span>
+
+<span class="s1">player = turtle.Turtle()</span>
+<span class="s1">player.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">player.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">player.penup()</span>
+<span class="s1">player.goto(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+<span class="s1">player.shapesize(</span><span class="s3">2</span><span class="s0">, </span><span class="s3">2</span><span class="s1">)</span>
+<span class="s1">player.color(</span><span class="s2">'blue'</span><span class="s1">)</span>
+<span class="s1">player.dy = </span><span class="s3">0.5</span>
+<span class="s1">player.dx = </span><span class="s3">0.3</span>
+
+<span class="s4"># platforms</span>
+
+<span class="s1">platone = turtle.Turtle()</span>
+<span class="s1">platone.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platone.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">platone.penup()</span>
+<span class="s1">platone.goto(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">300</span><span class="s1">)</span>
+<span class="s1">platone.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">7</span><span class="s1">)</span>
+<span class="s1">platone.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+
+<span class="s1">plat_hor = turtle.Turtle()  </span><span class="s4"># moving horizontally</span>
+<span class="s1">plat_hor.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">plat_hor.penup()</span>
+<span class="s1">plat_hor.goto(-</span><span class="s3">200</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+<span class="s1">plat_hor.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">5</span><span class="s1">)</span>
+<span class="s1">plat_hor.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+<span class="s1">plat_hor.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">plat_hor.dx = </span><span class="s3">0.3</span>
+
+<span class="s1">plattwo = turtle.Turtle()</span>
+<span class="s1">plattwo.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">plattwo.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">plattwo.penup()</span>
+<span class="s1">plattwo.goto(-</span><span class="s3">150</span><span class="s0">, </span><span class="s1">-</span><span class="s3">150</span><span class="s1">)</span>
+<span class="s1">plattwo.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">7</span><span class="s1">)</span>
+<span class="s1">plattwo.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+
+<span class="s1">plat_vert = turtle.Turtle()  </span><span class="s4"># moving vertically</span>
+<span class="s1">plat_vert.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">plat_vert.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">plat_vert.penup()</span>
+<span class="s1">plat_vert.goto(</span><span class="s3">250</span><span class="s0">, </span><span class="s1">-</span><span class="s3">225</span><span class="s1">)</span>
+<span class="s1">plat_vert.shapesize(</span><span class="s3">7</span><span class="s0">, </span><span class="s3">3</span><span class="s1">)</span>
+<span class="s1">plat_vert.color(</span><span class="s2">'red'</span><span class="s1">)</span>
+<span class="s1">plat_vert.dy = </span><span class="s3">0.5</span>
+
+<span class="s1">platthree = turtle.Turtle()</span>
+<span class="s1">platthree.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platthree.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">platthree.penup()</span>
+<span class="s1">platthree.goto(</span><span class="s3">400</span><span class="s0">, </span><span class="s1">-</span><span class="s3">100</span><span class="s1">)</span>
+<span class="s1">platthree.shapesize(</span><span class="s3">2</span><span class="s0">, </span><span class="s3">4</span><span class="s1">)</span>
+<span class="s1">platthree.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+
+<span class="s1">platfour = turtle.Turtle()</span>
+<span class="s1">platfour.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platfour.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">platfour.penup()</span>
+<span class="s1">platfour.goto(</span><span class="s3">0</span><span class="s0">, </span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platfour.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">15</span><span class="s1">)</span>
+<span class="s1">platfour.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+
+<span class="s1">platfive = turtle.Turtle()</span>
+<span class="s1">platfive.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platfive.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">platfive.penup()</span>
+<span class="s1">platfive.goto(-</span><span class="s3">400</span><span class="s0">, </span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">platfive.shapesize(</span><span class="s3">3</span><span class="s0">, </span><span class="s3">7</span><span class="s1">)</span>
+<span class="s1">platfive.color(</span><span class="s2">'grey'</span><span class="s1">)</span>
+
+<span class="s1">finish = turtle.Turtle()</span>
+<span class="s1">finish.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">finish.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">finish.penup()</span>
+<span class="s1">finish.goto(-</span><span class="s3">400</span><span class="s0">, </span><span class="s3">60</span><span class="s1">)</span>
+<span class="s1">finish.shapesize(</span><span class="s3">3</span><span class="s0">, </span><span class="s3">3</span><span class="s1">)</span>
+<span class="s1">finish.color(</span><span class="s2">'dark green'</span><span class="s1">)</span>
+
+
+<span class="s4"># score for coins</span>
+
+<span class="s1">title = turtle.Turtle()</span>
+<span class="s1">title.penup()</span>
+<span class="s1">title.hideturtle()</span>
+<span class="s1">title.goto(-</span><span class="s3">450</span><span class="s0">, </span><span class="s3">350</span><span class="s1">)</span>
+<span class="s1">title.write(</span><span class="s2">'Stage'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+
+<span class="s1">coin_one = turtle.Turtle()</span>
+<span class="s1">coin_one.penup()</span>
+<span class="s1">coin_one.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">coin_one.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">coin_one.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">1</span><span class="s1">)</span>
+<span class="s1">coin_one.color(</span><span class="s2">'yellow'</span><span class="s1">)</span>
+<span class="s1">coin_one.goto(</span><span class="s3">400</span><span class="s0">, </span><span class="s1">-</span><span class="s3">60</span><span class="s1">)</span>
+
+<span class="s1">coin_two = turtle.Turtle()</span>
+<span class="s1">coin_two.penup()</span>
+<span class="s1">coin_two.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">coin_two.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">coin_two.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">1</span><span class="s1">)</span>
+<span class="s1">coin_two.color(</span><span class="s2">'yellow'</span><span class="s1">)</span>
+<span class="s1">coin_two.goto(-</span><span class="s3">150</span><span class="s0">, </span><span class="s1">-</span><span class="s3">120</span><span class="s1">)</span>
+
+<span class="s1">coin_three = turtle.Turtle()</span>
+<span class="s1">coin_three.penup()</span>
+<span class="s1">coin_three.speed(</span><span class="s3">0</span><span class="s1">)</span>
+<span class="s1">coin_three.shape(</span><span class="s2">'square'</span><span class="s1">)</span>
+<span class="s1">coin_three.shapesize(</span><span class="s3">1</span><span class="s0">, </span><span class="s3">1</span><span class="s1">)</span>
+<span class="s1">coin_three.color(</span><span class="s2">'yellow'</span><span class="s1">)</span>
+<span class="s1">coin_three.goto(</span><span class="s3">0</span><span class="s0">, </span><span class="s3">30</span><span class="s1">)</span>
+
+<span class="s4"># spikes</span>
+
+<span class="s1">spike_one = turtle.Turtle()</span>
+<span class="s1">spike_one.penup()</span>
+<span class="s1">spike_one.shape(</span><span class="s2">'triangle'</span><span class="s1">)</span>
+<span class="s1">spike_one.shapesize(</span><span class="s3">2</span><span class="s0">, </span><span class="s3">2</span><span class="s1">)</span>
+<span class="s1">spike_one.color(</span><span class="s2">'red'</span><span class="s1">)</span>
+<span class="s1">spike_one.goto(-</span><span class="s3">50</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span>
+<span class="s1">spike_one.tilt(</span><span class="s3">90</span><span class="s1">)</span>
+<span class="s1">spike_one.tiltangle()</span>
+<span class="s1">spike_one.dx = </span><span class="s3">0.3</span>
+
+<span class="s1">spike_two = turtle.Turtle()</span>
+<span class="s1">spike_two.penup()</span>
+<span class="s1">spike_two.shape(</span><span class="s2">'triangle'</span><span class="s1">)</span>
+<span class="s1">spike_two.shapesize(</span><span class="s3">2</span><span class="s0">, </span><span class="s3">2</span><span class="s1">)</span>
+<span class="s1">spike_two.color(</span><span class="s2">'red'</span><span class="s1">)</span>
+<span class="s1">spike_two.goto(</span><span class="s3">50</span><span class="s0">, </span><span class="s3">22</span><span class="s1">)</span>
+<span class="s1">spike_two.tilt(</span><span class="s3">90</span><span class="s1">)</span>
+<span class="s1">spike_two.tiltangle()</span>
+<span class="s1">spike_two.dx = </span><span class="s3">0.3</span>
+
+<span class="s4"># player movement, functions and buttons</span>
+
+
+<span class="s0">def </span><span class="s1">left():</span>
+    <span class="s1">x = player.xcor()</span>
+    <span class="s1">x -= </span><span class="s3">15</span>
+    <span class="s1">player.setx(x)</span>
+
+
+<span class="s0">def </span><span class="s1">right():</span>
+    <span class="s1">x = player.xcor()</span>
+    <span class="s1">x += </span><span class="s3">15</span>
+    <span class="s1">player.setx(x)</span>
+
+
+<span class="s0">def </span><span class="s1">jump():</span>
+    <span class="s0">if </span><span class="s1">player.ycor() &lt; </span><span class="s3">175</span><span class="s1">:</span>
+        <span class="s1">y = player.ycor()</span>
+        <span class="s1">y += </span><span class="s3">100</span>
+        <span class="s1">player.sety(y)</span>
+
+<span class="s1">wn.onkeypress(right</span><span class="s0">, </span><span class="s2">'d'</span><span class="s1">)</span>
+<span class="s1">wn.onkeypress(left</span><span class="s0">, </span><span class="s2">'a'</span><span class="s1">)</span>
+<span class="s1">wn.onkeypress(jump</span><span class="s0">, </span><span class="s2">'w'</span><span class="s1">)</span>
+<span class="s1">wn.listen()</span>
+
+<span class="s0">while True</span><span class="s1">:</span>
+
+    <span class="s1">wn.update()</span>
+
+
+    <span class="s1">plat_hor.setx(plat_hor.xcor() + plat_hor.dx)</span>
+    <span class="s1">plat_vert.sety(plat_vert.ycor() + plat_vert.dy)</span>
+
+    <span class="s0">if </span><span class="s1">plat_hor.xcor() &gt; </span><span class="s3">300</span><span class="s1">:</span>
+        <span class="s1">plat_hor.dx = -plat_hor.dx</span>
+    <span class="s0">if </span><span class="s1">plat_hor.xcor() &lt; -</span><span class="s3">200</span><span class="s1">:</span>
+        <span class="s1">plat_hor.dx = -plat_hor.dx</span>
+
+    <span class="s1">spike_one.setx(spike_one.xcor() + spike_one.dx)</span>
+    <span class="s1">spike_two.setx(spike_two.xcor() + spike_two.dx)</span>
+
+    <span class="s0">if </span><span class="s1">spike_one.xcor() &lt; -</span><span class="s3">130</span><span class="s1">:</span>
+        <span class="s1">spike_one.dx = -spike_one.dx</span>
+    <span class="s0">if </span><span class="s1">spike_one.xcor() &gt; -</span><span class="s3">40</span><span class="s1">:</span>
+        <span class="s1">spike_one.dx = -spike_one.dx</span>
+
+    <span class="s0">if </span><span class="s1">spike_two.xcor() &gt; </span><span class="s3">130</span><span class="s1">:</span>
+        <span class="s1">spike_two.dx = -spike_two.dx</span>
+    <span class="s0">if </span><span class="s1">spike_two.xcor() &lt; </span><span class="s3">40</span><span class="s1">:</span>
+        <span class="s1">spike_two.dx = -spike_two.dx</span>
+
+    <span class="s0">if </span><span class="s1">plat_vert.ycor() &gt; </span><span class="s3">300</span><span class="s1">:</span>
+        <span class="s1">plat_vert.dy = -plat_vert.dy</span>
+    <span class="s0">if </span><span class="s1">plat_vert.ycor() &lt; -</span><span class="s3">300</span><span class="s1">:</span>
+        <span class="s1">plat_vert.dy = -plat_vert.dy</span>
+
+    <span class="s0">if </span><span class="s1">player.ycor() &lt; player.ycor() + </span><span class="s3">1</span><span class="s1">:</span>
+        <span class="s1">player.sety(player.ycor() - player.dy)</span>
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; platone.ycor() + </span><span class="s3">30 </span><span class="s0">and </span><span class="s1">(platone.xcor() - </span><span class="s3">80 </span><span class="s1">&lt; player.xcor() &lt; platone.xcor() + </span><span class="s3">80 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; platone.ycor()):</span>
+            <span class="s1">player.sety(platone.ycor() + </span><span class="s3">30</span><span class="s1">)</span>
+
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; platthree.ycor() + </span><span class="s3">40 </span><span class="s0">and </span><span class="s1">(platthree.xcor() - </span><span class="s3">60 </span><span class="s1">&lt; player.xcor() &lt; platthree.xcor() + </span><span class="s3">60 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; platthree.ycor()):</span>
+            <span class="s1">player.sety(platthree.ycor() + </span><span class="s3">40</span><span class="s1">)</span>
+
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; plattwo.ycor() + </span><span class="s3">30 </span><span class="s0">and </span><span class="s1">(plattwo.xcor() - </span><span class="s3">95 </span><span class="s1">&lt; player.xcor() &lt; plattwo.xcor() + </span><span class="s3">95 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; plattwo.ycor()):</span>
+            <span class="s1">player.sety(plattwo.ycor() + </span><span class="s3">30</span><span class="s1">)</span>
+
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; platfour.ycor() + </span><span class="s3">30 </span><span class="s0">and </span><span class="s1">(platfour.xcor() - </span><span class="s3">170 </span><span class="s1">&lt; player.xcor() &lt; platfour.xcor() + </span><span class="s3">170 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; platfour.ycor()):</span>
+            <span class="s1">player.sety(platfour.ycor() + </span><span class="s3">30</span><span class="s1">)</span>
+
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; platfive.ycor() + </span><span class="s3">50 </span><span class="s0">and </span><span class="s1">(platfive.xcor() - </span><span class="s3">90 </span><span class="s1">&lt; player.xcor() &lt; platfive.xcor() + </span><span class="s3">90 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; platfive.ycor()):</span>
+            <span class="s1">player.sety(platfive.ycor() + </span><span class="s3">50</span><span class="s1">)</span>
+
+        <span class="s0">if </span><span class="s1">player.ycor() &lt; plat_hor.ycor() + </span><span class="s3">30 </span><span class="s0">and </span><span class="s1">(plat_hor.xcor() - </span><span class="s3">70 </span><span class="s1">&lt; player.xcor() &lt; plat_hor.xcor() + </span><span class="s3">70 </span><span class="s0">and </span><span class="s1">player.ycor() &gt; plat_hor.ycor()):</span>
+            <span class="s1">player.sety(plat_hor.ycor() + </span><span class="s3">30</span><span class="s1">)</span>
+            <span class="s1">player.setx(plat_hor.xcor())</span>
+
+        <span class="s0">if </span><span class="s1">plat_vert.xcor() - </span><span class="s3">40 </span><span class="s1">&lt; player.xcor() &lt; plat_vert.xcor() + </span><span class="s3">40 </span><span class="s0">and </span><span class="s1">plat_vert.ycor() - </span><span class="s3">75 </span><span class="s1">&lt; player.ycor() &lt; plat_vert.ycor() + </span><span class="s3">75</span><span class="s1">:</span>
+
+            <span class="s4"># player.ycor() &lt; plat_vert.ycor() + 30 and (plat_vert.xcor() - 40 &lt; player.xcor() &lt; plat_vert.xcor() + 40 and player.ycor() &gt; plat_vert.ycor()):</span>
+
+            <span class="s1">player.sety(plat_vert.ycor() + </span><span class="s3">30</span><span class="s1">)</span>
+            <span class="s1">title.clear()</span>
+            <span class="s1">title.write(</span><span class="s2">'Game Over :(, starting over...'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+            <span class="s1">player.setpos(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+            <span class="s1">coin_one.showturtle()</span>
+            <span class="s1">coin_two.showturtle()</span>
+            <span class="s1">coin_three.showturtle()</span>
+
+    <span class="s0">if </span><span class="s1">coin_one.xcor() - </span><span class="s3">10 </span><span class="s1">&lt; player.xcor() &lt; coin_one.xcor() + </span><span class="s3">10 </span><span class="s0">and </span><span class="s1">coin_one.ycor() - </span><span class="s3">10 </span><span class="s1">&lt; player.ycor() &lt; coin_one.ycor() + </span><span class="s3">10</span><span class="s1">:</span>
+        <span class="s1">coin_one.hideturtle()</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Great!'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+
+    <span class="s0">if </span><span class="s1">coin_two.xcor() - </span><span class="s3">10 </span><span class="s1">&lt; player.xcor() &lt; coin_two.xcor() + </span><span class="s3">10 </span><span class="s0">and </span><span class="s1">coin_two.ycor() - </span><span class="s3">10 </span><span class="s1">&lt; player.ycor() &lt; coin_two.ycor() + </span><span class="s3">10</span><span class="s1">:</span>
+        <span class="s1">coin_two.hideturtle()</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Keep Going!'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+
+    <span class="s0">if </span><span class="s1">coin_three.xcor() - </span><span class="s3">10 </span><span class="s1">&lt; player.xcor() &lt; coin_three.xcor() + </span><span class="s3">10 </span><span class="s0">and </span><span class="s1">coin_three.ycor() - </span><span class="s3">10 </span><span class="s1">&lt; player.ycor() &lt; coin_three.ycor() + </span><span class="s3">10</span><span class="s1">:</span>
+        <span class="s1">coin_three.hideturtle()</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Doing good!'</span><span class="s1">.format(</span><span class="s3">1</span><span class="s1">)</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+
+    <span class="s0">if </span><span class="s1">finish.xcor() - </span><span class="s3">20 </span><span class="s1">&lt; player.xcor() &lt; finish.xcor() + </span><span class="s3">20 </span><span class="s0">and </span><span class="s1">finish.ycor() - </span><span class="s3">20 </span><span class="s1">&lt; player.ycor() &lt; finish.ycor() + </span><span class="s3">20</span><span class="s1">:</span>
+        <span class="s0">if not</span><span class="s1">(coin_three.isvisible()):</span>
+            <span class="s0">if not</span><span class="s1">(coin_two.isvisible()):</span>
+                <span class="s0">if not</span><span class="s1">(coin_one.isvisible()):</span>
+                    <span class="s1">title.clear()</span>
+                    <span class="s1">title.write(</span><span class="s2">'Clear! Starting over...'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+                    <span class="s1">player.setpos(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+                    <span class="s1">coin_one.showturtle()</span>
+                    <span class="s1">coin_two.showturtle()</span>
+                    <span class="s1">coin_three.showturtle()</span>
+
+    <span class="s0">if </span><span class="s1">spike_one.xcor() - </span><span class="s3">20 </span><span class="s1">&lt; player.xcor() &lt; spike_one.xcor() + </span><span class="s3">20 </span><span class="s0">and </span><span class="s1">spike_one.ycor() - </span><span class="s3">20 </span><span class="s1">&lt; player.ycor() &lt; spike_one.ycor() + </span><span class="s3">20</span><span class="s1">:</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Game Over :(, starting over...'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+        <span class="s1">player.setpos(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+        <span class="s1">coin_one.showturtle()</span>
+        <span class="s1">coin_two.showturtle()</span>
+        <span class="s1">coin_three.showturtle()</span>
+
+    <span class="s0">if </span><span class="s1">spike_two.xcor() - </span><span class="s3">20 </span><span class="s1">&lt; player.xcor() &lt; spike_two.xcor() + </span><span class="s3">20 </span><span class="s0">and </span><span class="s1">spike_two.ycor() - </span><span class="s3">20 </span><span class="s1">&lt; player.ycor() &lt; spike_two.ycor() + </span><span class="s3">20</span><span class="s1">:</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Game Over :(, starting over...'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+        <span class="s1">player.setpos(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+        <span class="s1">coin_one.showturtle()</span>
+        <span class="s1">coin_two.showturtle()</span>
+        <span class="s1">coin_three.showturtle()</span>
+
+    <span class="s0">if </span><span class="s1">player.ycor() &lt; -</span><span class="s3">400</span><span class="s1">:</span>
+        <span class="s1">title.clear()</span>
+        <span class="s1">title.write(</span><span class="s2">'Game Over :(, starting over...'</span><span class="s0">, </span><span class="s1">align=</span><span class="s2">'left'</span><span class="s0">, </span><span class="s1">font=(</span><span class="s2">'helvetica'</span><span class="s0">, </span><span class="s3">20</span><span class="s0">, </span><span class="s2">'bold'</span><span class="s1">))</span>
+        <span class="s1">player.setpos(-</span><span class="s3">300</span><span class="s0">, </span><span class="s1">-</span><span class="s3">250</span><span class="s1">)</span>
+        <span class="s1">coin_one.showturtle()</span>
+        <span class="s1">coin_two.showturtle()</span>
+        <span class="s1">coin_three.showturtle()</span>
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>
